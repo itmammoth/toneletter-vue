@@ -6,13 +6,18 @@ export function install(Vue) {
 
   Vue.directive("toneletter", {
     bind(el, binding, vnode) {
-      console.log("bound", el, binding, vnode);
       const options = {
         lang: null, // Must be given
+        phoneticSymbols: null,
+        toneKeys: null,
         autoObserve: true,
         ...binding.value,
       };
-      const instance = new Toneletter(el, { lang: options.lang });
+      const instance = new Toneletter(el, {
+        lang: options.lang,
+        phoneticSymbols: options.phoneticSymbols,
+        toneKeys: options.toneKeys,
+      });
       if (options.autoObserve) {
         instance.observe();
       }

@@ -1,25 +1,38 @@
-// // vue コンポーネントのインポート
-// import component from "./toneletter.vue";
-//
-// Vue.use() によって実行される install 関数を定義
+import Toneletter from 'toneletter';
+
 function install(Vue) {
   if (install.installed) { return; }
   install.installed = true;
-  // Vue.component("Toneletter", component);
+
   Vue.directive("toneletter", {
-    inserted: function inserted(el) {
-      console.log(el);
+    bind: function bind(el, binding, vnode) {
+      var options = Object.assign({}, {lang: null, // Must be given
+        autoObserve: true,
+        phoneticSymbols: [],
+        toneKeys: []},
+        binding.value);
+      var instance = new Toneletter(el, {
+        lang: options.lang,
+        phoneticSymbols: options.phoneticSymbols,
+        toneKeys: options.toneKeys,
+      });
+      if (options.autoObserve) {
+        instance.observe();
+      }
+      el.toneletter = instance;
+    },
+    unbind: function unbind(el, binding, vnode) {
+      el.toneletter.off();
     },
   });
 }
 
-// Vue.use() のためのモジュール定義を作成
 // Create module definition for Vue.use()
 var plugin = {
   install: install,
 };
 
-// vue が見つかった場合に自動インストールする (ブラウザで <script> タグを用いた場合等)
+// Install automatically when Vue is found
 var GlobalVue = null;
 if (typeof window !== "undefined") {
   GlobalVue = window.Vue;
@@ -29,8 +42,5 @@ if (typeof window !== "undefined") {
 if (GlobalVue) {
   GlobalVue.use(plugin);
 }
-
-// // (npm/webpack 等で) モジュールとして利用させるためコンポーネントを export する
-// export default component;
 
 export { install };

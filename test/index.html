@@ -21,6 +21,14 @@
       <textarea
         v-toneletter="{
           lang: 'th',
+          toneKeys: ['0', '1', '2', '3', '4'],  // for tones ā, à, â, á, ǎ
+          phoneticSymbols: {
+            'U': '\u0289', // ʉ
+            'A': '\u0259', // ə
+            'E': '\u025b', // ɛ
+            '@': '\u0254', // ɔ
+            'G': '\u014b', // ŋ
+          },
           autoObserve: true,
         }"
         class="toneletter"
