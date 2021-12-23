@@ -12,6 +12,15 @@ $ npm install toneletter-vue
 
 # Usage
 
+First, install as vue plugin:
+
+```js
+import Vue from "vue";
+import ToneLetterVue from 'toneletter-vue';
+
+Vue.use(ToneLetterVue);
+```
+
 toneletter-vue provides `v-toneletter` directive to make your input field toneletterized.
 
 ```vue
@@ -41,14 +50,15 @@ You can pass options to `v-toneletter` directive.
 You can have access to Toneletter instance via `element.toneletter`.
 
 ```vue
+
 <template>
   <textarea v-toneletter="{ lang: 'th' }" ref="text"></textarea>
 </template>
 
 <script>
 ...
-    const toneletter = this.$refs.text.toneletter;
-    toneletter.off();
+const toneletter = this.$refs.text.toneletter;
+toneletter.off();
 ...
 </script>
 ```
