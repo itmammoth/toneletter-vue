@@ -1,6 +1,6 @@
 import Toneletter from "toneletter";
 
-export function install(Vue) {
+function install(Vue) {
   if (install.installed) return;
   install.installed = true;
 
@@ -38,7 +38,7 @@ const plugin = {
   install,
 };
 
-// Install automatically when Vue is found
+// Install automatically when Vue is found (mainly for browser use)
 let GlobalVue = null;
 if (typeof window !== "undefined") {
   GlobalVue = window.Vue;
@@ -48,3 +48,5 @@ if (typeof window !== "undefined") {
 if (GlobalVue) {
   GlobalVue.use(plugin);
 }
+
+export default plugin;

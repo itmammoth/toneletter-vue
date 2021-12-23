@@ -36,7 +36,7 @@ var plugin = {
   install: install,
 };
 
-// Install automatically when Vue is found
+// Install automatically when Vue is found (mainly for browser use)
 var GlobalVue = null;
 if (typeof window !== "undefined") {
   GlobalVue = window.Vue;
@@ -47,4 +47,4 @@ if (GlobalVue) {
   GlobalVue.use(plugin);
 }
 
-export { install };
+export { plugin as default };

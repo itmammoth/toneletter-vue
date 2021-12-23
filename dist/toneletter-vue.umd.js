@@ -44,7 +44,7 @@
     install: install,
   };
 
-  // Install automatically when Vue is found
+  // Install automatically when Vue is found (mainly for browser use)
   var GlobalVue = null;
   if (typeof window !== "undefined") {
     GlobalVue = window.Vue;
@@ -55,7 +55,7 @@
     GlobalVue.use(plugin);
   }
 
-  exports.install = install;
+  exports["default"] = plugin;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
