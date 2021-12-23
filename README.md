@@ -16,9 +16,9 @@ First, install as vue plugin:
 
 ```js
 import Vue from "vue";
-import ToneLetterVue from 'toneletter-vue';
+import ToneletterVue from 'toneletter-vue';
 
-Vue.use(ToneLetterVue);
+Vue.use(ToneletterVue);
 ```
 
 toneletter-vue provides `v-toneletter` directive to make your input field toneletterized.
