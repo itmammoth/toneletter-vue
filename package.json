@@ -1,6 +1,6 @@
 {
   "name": "toneletter-vue",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "toneletter.js adapter for Vue.js",
   "main": "dist/toneletter-vue.umd.js",
   "module": "dist/toneletter-vue.esm.js",
