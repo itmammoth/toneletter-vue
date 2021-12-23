@@ -14,10 +14,14 @@
 
     Vue.directive("toneletter", {
       bind: function bind(el, binding, vnode) {
+        if (typeof binding.value === "boolean" && !binding.value) {
+          return;
+        }
+
         var options = Object.assign({}, {lang: null, // Must be given
-          autoObserve: true,
-          phoneticSymbols: [],
-          toneKeys: []},
+          phoneticSymbols: null,
+          toneKeys: null,
+          autoObserve: true},
           binding.value);
         var instance = new Toneletter__default["default"](el, {
           lang: options.lang,
@@ -30,7 +34,7 @@
         el.toneletter = instance;
       },
       unbind: function unbind(el, binding, vnode) {
-        el.toneletter.off();
+        el.toneletter && el.toneletter.off();
       },
     });
   }

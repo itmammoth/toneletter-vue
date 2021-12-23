@@ -6,6 +6,10 @@ export function install(Vue) {
 
   Vue.directive("toneletter", {
     bind(el, binding, vnode) {
+      if (typeof binding.value === "boolean" && !binding.value) {
+        return;
+      }
+
       const options = {
         lang: null, // Must be given
         phoneticSymbols: null,
@@ -24,7 +28,7 @@ export function install(Vue) {
       el.toneletter = instance;
     },
     unbind(el, binding, vnode) {
-      el.toneletter.off();
+      el.toneletter && el.toneletter.off();
     },
   });
 }

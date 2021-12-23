@@ -17,9 +17,10 @@
   </head>
   <body>
     <div id="app">
-      <p>Here is a toneletterized textarea.</p>
-      <textarea
-        v-toneletter="{
+      <div>
+        <h1>Here is a toneletterized textarea.</h1>
+        <textarea
+          v-toneletter="{
           lang: 'th',
           toneKeys: ['0', '1', '2', '3', '4'],  // for tones ā, à, â, á, ǎ
           phoneticSymbols: {
@@ -31,24 +32,27 @@
           },
           autoObserve: true,
         }"
-        class="toneletter"
-        cols="80"
-        rows="10"
-        ref="textarea"
-      >
-      </textarea>
+          class="toneletter"
+          cols="80"
+          rows="10"
+          ref="textarea"
+        >
+        </textarea>
+        <div>
+          <button @click="on">Turn on</button>
+          <button @click="off">Turn off</button>
+        </div>
+      </div>
+
       <div>
-        <button @click="on">Turn on</button>
-        <button @click="off">Turn off</button>
+        <h1>unactivated toneletter. (by v-toneletter="false")</h1>
+        <textarea v-toneletter="false" class="toneletter"></textarea>
       </div>
     </div>
 
     <script>
       const app = new Vue({
         el: "#app",
-        data: {
-          message: "Hello!",
-        },
         methods: {
           on() {
             this.$refs.textarea.toneletter.observe();
